@@ -1,0 +1,186 @@
+:root{
+  --rojo: #f28b82; /* rojo claro */
+  --fondo: #1f1f1f;
+  --texto: #f5f5f5;
+  --accent: #b71c1c;
+  --card: #2a2a2a;
+  --trans: 0.28s;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:var(--fondo);
+  color:var(--texto);
+  line-height:1.45;
+}
+
+/* NAVEGACIÓN */
+.nav{
+  background: #111;
+  position:sticky;
+  top:0;
+  z-index:50;
+  border-bottom:4px solid rgba(0,0,0,0.4);
+}
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 18px;
+}
+.logo{color:var(--rojo);font-weight:700;text-decoration:none;letter-spacing:1px}
+.nav-links{list-style:none;margin:0;padding:0;display:flex;gap:12px;align-items:center}
+.nav-links a{color:var(--texto);text-decoration:none;padding:8px 12px;border-radius:8px;transition:background var(--trans)}
+.nav-links a:hover{background:rgba(242,139,130,0.14);color:var(--rojo)}
+
+/* HERO */
+.hero{
+  padding:60px 20px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.hero-small{padding:30px 20px;text-align:center}
+
+/* ROTATING TEXT (texto rotativo 360° continuo) */
+.rotar{
+  display:inline-block;
+  font-size:2.4rem;
+  color:var(--rojo);
+  animation: rotar360 8s linear infinite;
+}
+@keyframes rotar360{
+  from{transform:rotate(0deg)} to{transform:rotate(360deg)}
+}
+
+/* CONTENEDOR */
+.container{max-width:1100px;margin:30px auto;padding:0 16px}
+
+/* BOTONES PRINCIPALES (5 botones animados) */
+.botones-principales{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0}
+.boton{
+  background:var(--rojo);
+  color:#2b2b2b;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  display:inline-block;
+}
+.boton:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(242,139,130,0.15)}
+
+/* BOTÓN CAMBIANTE - cambia color y tamaño gradualmente al hacer click */
+.boton-cambiar{
+  cursor:pointer;
+}
+.boton-cambiar.clicked{
+  background:var(--accent);
+  transform:scale(1.12);
+  transition: transform .6s ease, background .6s ease;
+}
+
+/* CAJA CICLO DE COLORES */
+.caja-ciclo{
+  width:220px;height:80px;margin:20px auto;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;background:var(--card);
+  animation: cicloColor 6s linear infinite;
+}
+@keyframes cicloColor{
+  0%{background:var(--rojo)}
+  33%{background:#ffd7d0}
+  66%{background:#ffb4ab}
+  100%{background:var(--rojo)}
+}
+
+/* TEXT ROTATING / velocidad variable */
+.texto-velocidad{
+  margin-top:18px;
+  display:inline-block;
+  font-weight:600;
+  animation: velocidad 4s linear infinite;
+}
+@keyframes velocidad{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+
+/* GALERÍA (grid) */
+.galeria-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  align-items:start;
+}
+.foto{background:var(--card);border-radius:10px;overflow:hidden;position:relative}
+.foto img{width:100%;height:220px;object-fit:cover;display:block}
+.foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,0.6));color:#fff;display:flex;flex-direction:column;gap:6px}
+.foto .desc{opacity:0;transform:translateY(8px);transition:all .25s ease}
+.foto:hover .desc{opacity:1;transform:translateY(0)}
+
+/* Animaciones distintas para cada foto */
+.anim-a img{animation:scalePulse 4s ease-in-out infinite}
+@keyframes scalePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+.anim-b img{animation:rotateSlight 6s linear infinite}
+@keyframes rotateSlight{0%{transform:rotate(0deg)}50%{transform:rotate(2deg)}100%{transform:rotate(0deg)}}
+
+.anim-c img{filter:grayscale(.3);transition:filter .35s}
+.anim-c:hover img{filter:grayscale(0)}
+
+.anim-d img{animation:slideX 5s ease-in-out infinite}
+@keyframes slideX{0%{transform:translateX(0)}50%{transform:translateX(6px)}100%{transform:translateX(0)}}
+
+.anim-e img{animation:floatY 6s ease-in-out infinite}
+@keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+.anim-f img{transition:transform .4s}
+.anim-f:hover img{transform:scale(1.08) rotate(-2deg)}
+
+.anim-g img{filter:brightness(.9);transition:filter .4s}
+.anim-g:hover img{filter:brightness(1.1)}
+
+.anim-h img{animation:zoomIn 7s linear infinite}
+@keyframes zoomIn{0%{transform:scale(1)}100%{transform:scale(1.02)}}
+
+/* TABLA estilo */
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+th,td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+th{background:var(--rojo);color:#2b2b2b;animation: encabezadoAnim 3s ease-in-out infinite}
+@keyframes encabezadoAnim{
+  0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}
+}
+
+/* Posts / blog */
+.blog-list{display:flex;flex-direction:column;gap:20px}
+.post{display:flex;gap:16px;background:var(--card);padding:12px;border-radius:10px;overflow:hidden;align-items:flex-start;opacity:0;transform:translateY(20px);transition:all .6s ease}
+.post img{width:220px;height:140px;object-fit:cover;border-radius:8px}
+.post h2{margin:0 0 8px 0;color:var(--rojo)}
+.post p{margin:0 0 12px 0;color:#ddd}
+.post .leer-mas{background:var(--rojo);padding:8px 12px;border-radius:8px;color:#2b2b2b;text-decoration:none}
+
+/* cuando se revela (JS agrega clase) */
+.post.revealed{opacity:1;transform:translateY(0)}
+
+/* iconos redes */
+.iconos-redes{display:flex;gap:12px}
+.icono img{width:60px;height:60px;border-radius:8px;transition:filter .25s}
+.icono:hover img{filter:hue-rotate(200deg) saturate(1.2)}
+
+/* CONTACTO / CV */
+.descarga-cv{display:inline-block;background:var(--rojo);padding:10px 14px;border-radius:8px;color:#2b2b2b;text-decoration:none}
+
+/* FOOTER */
+.pie{background:#0f0f0f;padding:16px;text-align:center;color:#bfbfbf;margin-top:40px}
+
+/* Responsive */
+@media(max-width:720px){
+  .nav-inner{padding:10px}
+  .foto img{height:180px}
+  .post{flex-direction:column}
+  .post img{width:100%;height:200px}
+}
